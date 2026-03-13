@@ -1,19 +1,24 @@
+from pages.result import DuckDuckGoResultPage
+from pages.search import DuckDuckGoSearchPage
+
 def test_basic_duckduckgo_search(browser):
 
 #Given the DuckDuckGo home page is displayed
-#TODO
-
+    search_page = DuckDuckGoSearchPage(browser)
+    result_page = DuckDuckGoResultPage(browser)
+    PHRASE = "Elvis"
 # When the user searches for "David Bowie"
-#TODO
+    search_page.load()
 
 # Then the search result title contains "David Bowie"
-#TODO
+    search_page.search(PHRASE)
 
 # and the search query is "David Bowie"
-#TODO
+    assert PHRASE in result_page.title()
 
 #and the search result links pertain to "David Bowie"
-#TODO
+    for title in result_page.result_link_titles():
+        assert PHRASE.lower() in title.lower()
 
     
     raise Exception("Incomplete test")

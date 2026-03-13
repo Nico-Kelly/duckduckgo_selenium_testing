@@ -2,7 +2,7 @@
 This module contains DuckDuckGoResultPage, the page object for the DuckDuckGo result page.
 """
 
-class DuckDuckGoSearchPage:
+class DuckDuckGoResultPage:
 
     def __init__(self, browser):
         self.browser = browser
