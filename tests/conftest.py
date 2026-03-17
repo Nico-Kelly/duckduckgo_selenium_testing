@@ -25,14 +25,24 @@ def config(scope='session'):
 
 
 @pytest.fixture
-def browser():
+def browser(config):
 
     #initialize the ChromeDriver instance
-    b = selenium.webdriver.Chrome()
+    if config['browser'] == 'firefox':
+        b = selenium.webdriver.firefox()
+
+    elif config['browser'] == 'Chrome':
+        b = selenium.webdriver.Chrome()
+    elif config['browser'] == 'Headless Chrome':
+        opts = selenium.webdriver.ChromeOptions()
+        opts.add_argument('headless')
+    
+    else:
+        raise Exception(f'Browser "{config["browser"]}" is not suported')
 
 
     #Make its calls wait up to 10 seconds for elements to appear
-    b.implicitly_wait(10)
+    b.implicitly_wait(config['implicit_wait'])
 
     #Return the WebDriver instance for the setup
     yield b
