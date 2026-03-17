@@ -28,7 +28,7 @@ def config(scope='session'):
 def browser(config):
 
     #initialize the ChromeDriver instance
-    if config['browser'] == 'firefox':
+    if config['browser'] == 'Firefox':
         b = selenium.webdriver.firefox()
 
     elif config['browser'] == 'Chrome':
@@ -36,6 +36,7 @@ def browser(config):
     elif config['browser'] == 'Headless Chrome':
         opts = selenium.webdriver.ChromeOptions()
         opts.add_argument('headless')
+        b = selenium.webdriver.Chrome(options=opts)
     
     else:
         raise Exception(f'Browser "{config["browser"]}" is not suported')
