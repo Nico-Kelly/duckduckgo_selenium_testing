@@ -2,12 +2,14 @@
 This module contains DuckDuckGoResultPage, the page object for the DuckDuckGo result page.
 """
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 class DuckDuckGoResultPage:
 
 
     #Locators
     
-    RESULT_LINKS = (By.CSS_SELECTOR, 'wLL07_0Xnd1QZpzpfR4W')
+    RESULT_LINKS = (By.CSS_SELECTOR, '[data-testid="result-title-a"]')
     SEARCH_INPUT = (By.ID,'search_form_input')
 
     #Initializer
@@ -18,10 +20,16 @@ class DuckDuckGoResultPage:
     #Interaction Methods
 
     def result_link_titles(self):
-        links = self.browser.find_elements(*self.RESULT_LINKS)
-        titles = [link.text for link in links]
-        return titles
     
+        wait = WebDriverWait(self.browser, 10)
+
+        links = wait.until(EC.presence_of_all_elements_located(self.RESULT_LINKS))
+
+        titles = [link.get_attribute("innerText") for link in links]
+
+        return titles
+
+
     def search_input_value(self):
         search_input = self.browser.find_element(*self.SEARCH_INPUT)
         value = search_input.get_attribute('value')

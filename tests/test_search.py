@@ -7,7 +7,7 @@ def test_basic_duckduckgo_search(browser):
     search_page = DuckDuckGoSearchPage(browser)
     result_page = DuckDuckGoResultPage(browser)
     PHRASE = "Elvis"
-# When the user searches for "David Bowie"
+# When the user searches for "Elvis"
     search_page.load()
 
 # Then the search result title contains "Elvis"
