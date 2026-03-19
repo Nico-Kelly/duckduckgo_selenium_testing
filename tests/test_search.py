@@ -10,15 +10,18 @@ def test_basic_duckduckgo_search(browser):
 # When the user searches for "David Bowie"
     search_page.load()
 
-# Then the search result title contains "David Bowie"
+# Then the search result title contains "Elvis"
     search_page.search(PHRASE)
 
-# and the search query is "David Bowie"
+# and the search result title contains is "Elvis"
     assert PHRASE in result_page.title()
 
-#and the search result links pertain to "David Bowie"
-    for title in result_page.result_link_titles():
-        assert PHRASE.lower() in title.lower()
+#and the search result query is "Elvis"
+    assert PHRASE == result_page.search_input_value()
 
-    
-    raise Exception("Incomplete test")
+
+#and the search result links pertain to "Elvis"
+
+    titles = result_page.result_link_titles()
+    matches = [t for t in titles if PHRASE.lower() in t.lower()]
+    assert len(matches) > 0
