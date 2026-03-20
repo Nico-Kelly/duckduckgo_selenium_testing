@@ -25,7 +25,7 @@ def browser(config):
 
     #initialize the ChromeDriver instance
     if config['browser'] == 'Firefox':
-        b = selenium.webdriver.firefox()
+        b = selenium.webdriver.Firefox()
 
     elif config['browser'] == 'Chrome':
         b = selenium.webdriver.Chrome()

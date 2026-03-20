@@ -9,7 +9,7 @@ class DuckDuckGoResultPage:
 
     #Locators
     
-    RESULT_LINKS = (By.CSS_SELECTOR, '[data-testid="result-title-a"]')
+    RESULT_LINKS = (By.CSS_SELECTOR, '[data-testid="result-title-a"] span')
     SEARCH_INPUT = (By.ID,'search_form_input')
 
     #Initializer
@@ -23,9 +23,9 @@ class DuckDuckGoResultPage:
     
         wait = WebDriverWait(self.browser, 10)
 
-        links = wait.until(EC.presence_of_all_elements_located(self.RESULT_LINKS))
+        links = wait.until(EC.visibility_of_all_elements_located(self.RESULT_LINKS))
 
-        titles = [link.get_attribute("innerText") for link in links]
+        titles = [link.text for link in links]
 
         return titles
 
