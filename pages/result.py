@@ -4,7 +4,8 @@ This module contains DuckDuckGoResultPage, the page object for the DuckDuckGo re
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-class DuckDuckGoResultPage:
+from base_page import BasePage
+class DuckDuckGoResultPage(BasePage):
 
 
     #Locators
@@ -21,9 +22,9 @@ class DuckDuckGoResultPage:
 
     def result_link_titles(self):
     
-        wait = WebDriverWait(self.browser, 10)
+        #wait = WebDriverWait(self.browser, 10) deprecated this
 
-        links = wait.until(EC.visibility_of_all_elements_located(self.RESULT_LINKS))
+        links = self.wait_multiple_visibility(self.RESULT_LINKS)
 
         titles = [link.text for link in links]
 
@@ -31,7 +32,7 @@ class DuckDuckGoResultPage:
 
 
     def search_input_value(self):
-        search_input = self.browser.find_element(*self.SEARCH_INPUT)
+        search_input = self.wait_visibility(self.SEARCH_INPUT)
         value = search_input.get_attribute('value')
         return value
     
