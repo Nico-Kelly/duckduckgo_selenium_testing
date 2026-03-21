@@ -3,7 +3,7 @@ This module contains DuckDuckGoSearchPage, the page object for the DuckDuckGo se
 """
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from base_page import BasePage
+from pages.base_page import BasePage
 
 class DuckDuckGoSearchPage(BasePage):
 
@@ -29,5 +29,5 @@ class DuckDuckGoSearchPage(BasePage):
         self.browser.get(self.URL)
 
     def search(self, phrase):
-        search_input = self.browser.wait_visibility(*self.SEARCH_INPUT)
+        search_input = self.wait_visibility(self.SEARCH_INPUT)
         search_input.send_keys(phrase + Keys.RETURN)

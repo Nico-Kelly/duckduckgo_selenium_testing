@@ -4,7 +4,7 @@ This module contains DuckDuckGoResultPage, the page object for the DuckDuckGo re
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from base_page import BasePage
+from pages.base_page import BasePage
 class DuckDuckGoResultPage(BasePage):
 
 
