@@ -15,8 +15,8 @@ class DuckDuckGoResultPage(BasePage):
 
     #Initializer
 
-    def __init__(self, browser):
-        self.browser = browser
+    # def __init__(self, browser):
+        #self.browser = browser
 
     #Interaction Methods
 

@@ -47,4 +47,3 @@ def browser(config):
     #Quit the WebDriver instance for the cleanup
     b.quit()
 
-
